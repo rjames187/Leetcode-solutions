@@ -11,6 +11,8 @@ class Solution:
         
         hash_table_t = {}
         for i in t:
+            if i not in hash_table_s:
+                return False
             if i in hash_table_t:
                 hash_table_t[i] += 1
             else:
