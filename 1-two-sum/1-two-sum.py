@@ -1,6 +1,12 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range(len(nums) - 1):
-            for j in range(i + 1, len(nums)):
-                if nums[i] + nums[j] == target:
+        hash_table = {}
+        for i, x in enumerate(nums):
+            hash_table[x] = i
+        
+        for i, x in enumerate(nums):
+            y = target - x
+            if y in hash_table:
+                j = hash_table[y]
+                if i != j:
                     return [i, j]
