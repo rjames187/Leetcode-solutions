@@ -1,22 +1,20 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-
-        
-        key = {'(' : ')', '[' : ']', '{' : '}'}
+        dic = {')':'(', ']': '[', '}': '{'}
         
         stack = []
         
         for i in s:
-            if i in key:
-                stack.insert(0, i)
-            elif len(stack) == 0:
-                return False
-            elif i != key[stack[0]]:
-                return False
+            if i in dic:
+                if len(stack) == 0:
+                    return False
+                top = stack[len(stack) - 1]
+                if top == dic[i]:
+                    stack.pop()
+                else:
+                    return False
             else:
-                stack.pop(0)
-        
-        if len(stack) != 0:
-            return False
-        return True
+                stack.append(i)
+                
+        return len(stack) == 0
                 
