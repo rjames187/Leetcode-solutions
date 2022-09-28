@@ -5,39 +5,34 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        if list1 == None:
-            return list2
-        if list2 == None:
-            return list1
-        
-        p1 = list1
-        p2 = list2
-        if list1.val < list2.val:
-            head = ListNode(list1.val)
-            p1 = p1.next
-        else:
-            head = ListNode(list2.val)
-            p2 = p2.next
-        
-        new_list = head
-        while p1 != None or p2 != None:
-            if p1 == None:
-                new_list.next = ListNode(p2.val)
-                new_list = new_list.next
-                p2 = p2.next
-            elif p2 == None:
-                new_list.next = ListNode(p1.val)
-                new_list = new_list.next
-                p1 = p1.next
-            elif p1.val < p2.val:
-                new_list.next = ListNode(p1.val)
-                new_list = new_list.next
-                p1 = p1.next
+        head = None
+        curNewNode = None
+        curNode1 = list1
+        curNode2 = list2
+        while ((curNode1 != None) or (curNode2 != None)):
+            if curNode1 == None and curNode2 != None:
+                newNode = ListNode(curNode2.val)
+                curNode2 = curNode2.next
+            elif curNode2 == None and curNode1 != None:
+                newNode = ListNode(curNode1.val)
+                curNode1 = curNode1.next
+            elif curNode1.val <= curNode2.val:
+                newNode = ListNode(curNode1.val)
+                curNode1 = curNode1.next
             else:
-                new_list.next = ListNode(p2.val)
-                new_list = new_list.next
-                p2 = p2.next
+                newNode = ListNode(curNode2.val)
+                curNode2 = curNode2.next
             
+            print(newNode.val)
+            if curNewNode == None:
+                curNewNode = newNode
+                head = curNewNode
+            else:
+                curNewNode.next = newNode
+                curNewNode = curNewNode.next
+        
         return head
+            
+
                 
                 
