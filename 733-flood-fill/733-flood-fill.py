@@ -1,19 +1,32 @@
 from copy import deepcopy
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
-        if image[sr][sc] == color:
-            return image
+        start_color = image[sr][sc]
         
-        def fill (sr, sc, old_color, new_color):
-            if sr < 0 or sc < 0 or sr == len(image) or sc == len(image[0]) or image[sr][sc] != old_color:
+        def fill (r, c):
+            if image[r][c] == color:
                 return
-            image[sr][sc] = new_color
-            fill(sr + 1, sc, old_color, new_color)
-            fill(sr - 1, sc, old_color, new_color)
-            fill(sr, sc + 1, old_color, new_color)
-            fill(sr, sc - 1, old_color, new_color)
+            
+            image[r][c] = color
+            
+            # up
+            if c != len(image[0]) - 1 and image[r][c + 1] == start_color:
+                fill (r, c + 1)
+            
+            # down
+            if c != 0 and image[r][c - 1] == start_color:
+                fill (r, c - 1)
+            
+            # right
+            if r != len(image) - 1 and image[r + 1][c] == start_color:
+                fill (r + 1, c)
+            
+            # left
+            if r != 0 and image[r - 1][c] == start_color:
+                fill (r - 1, c)
         
-        fill(sr, sc, image[sr][sc], color)
+        fill(sr, sc)
         
         return image
+                
             
