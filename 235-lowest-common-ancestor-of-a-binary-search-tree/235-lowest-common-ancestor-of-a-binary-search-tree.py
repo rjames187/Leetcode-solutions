@@ -23,7 +23,7 @@ class Solution:
                 return tup_right
             
             
-            pool = set([node.val, tup_left[1], tup_right[1]])
+            pool = [node.val, tup_left[1], tup_right[1]]
             
             if p in pool and q in pool:
                 return (True, node)
