@@ -10,9 +10,7 @@ class Solution:
             if not node:
                 return
             
-            stored = node.left
-            node.left = node.right
-            node.right = stored
+            node.right, node.left = node.left, node.right
             
             recurse(node.left)
             recurse(node.right)
