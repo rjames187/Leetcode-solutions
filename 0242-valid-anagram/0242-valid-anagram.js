@@ -7,24 +7,34 @@
 
 
 var isAnagram = function(s, t) {
-    let freq_map = new Map()
+    let freqMap = new Map()
 
-    var log_occ = function(chr, sign) {
-        if (freq_map.has(chr)) {
-            var cur_val = freq_map.get(chr)
-            freq_map.set(chr, cur_val + sign)
+    var logOcc = function(chr, sign) {
+        if (freqMap.has(chr)) {
+            var curVal = freqMap.get(chr)
+            freqMap.set(chr, curVal + sign)
             return
         }
-        freq_map.set(chr, sign)
+        freqMap.set(chr, sign)
+    }
+    
+    var onlyZeros = function(it) {
+        for (i of it) {
+            if (i !== 0) {
+                return false
+            }
+        }
+        return true
     }
     
     if (s.length !== t.length) { return false }
     for (let i = 0; i < s.length; i++) {
-        log_occ(s[i], 1)
-        log_occ(t[i], -1)
+        logOcc(s[i], 1)
+        logOcc(t[i], -1)
     }
     
-    return Array.from(freq_map.values()).every(i => i === 0)
+    const mapIter = freqMap.values()
+    return onlyZeros(mapIter)
 };
 
 // time: O(N)
