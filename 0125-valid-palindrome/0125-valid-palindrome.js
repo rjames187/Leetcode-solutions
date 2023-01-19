@@ -5,8 +5,8 @@
 
 var preprocess = (s) => {
     s = s.toLowerCase()
-    res = s.split('').filter(i => /[a-z|0-9]/.test(i))
-    return res
+    s = s.split('').filter(i => /[a-z|0-9]/.test(i))
+    return s
 }
 
 var isPalindrome = function(s) {
