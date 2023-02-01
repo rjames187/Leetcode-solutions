@@ -4,15 +4,11 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let hash = new Map();
+    let valToIndex = new Map()
     
     for (let i = 0; i < nums.length; i++) {
-        const difference = target - nums[i]
-        if (hash.has(difference)) {
-            return [i, hash.get(difference)]
-        }
-        hash.set(nums[i], i)
+        const curVal = nums[i]
+        if (valToIndex.has(target - curVal)) return [i, valToIndex.get(target - curVal)]
+        valToIndex.set(curVal, i)
     }
-    
-    return "error"
-};
+}
