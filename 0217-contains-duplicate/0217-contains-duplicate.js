@@ -3,9 +3,13 @@
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    while (nums.length > 0) {
-        let cur = nums.pop()
-        if (nums.includes(cur)) return true
+    if (nums.length < 2) return false
+    
+    nums.sort((a, b) => a - b)
+    
+    for (let i = 1; i < nums.length; i++) {
+        if (nums[i] === nums[i - 1]) return true
     }
+    
     return false
 }
