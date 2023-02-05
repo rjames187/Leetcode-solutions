@@ -4,11 +4,11 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let valToIndex = new Map()
+    const map = new Map()
     
     for (let i = 0; i < nums.length; i++) {
-        const curVal = nums[i]
-        if (valToIndex.has(target - curVal)) return [i, valToIndex.get(target - curVal)]
-        valToIndex.set(curVal, i)
+        const complement = target - nums[i]
+        if (map.has(complement)) return [i, map.get(complement)]
+        map.set(nums[i], i)
     }
 }
