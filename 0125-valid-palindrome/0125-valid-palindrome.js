@@ -3,24 +3,23 @@
  * @return {boolean}
  */
 
-var preprocess = (s) => {
-    s = s.toLowerCase()
-    s = s.split('').filter(i => /[a-z|0-9]/.test(i))
+var preprocess = function(s) {
+    s = s.toLowerCase().split('')
+    s = s.filter(chr => /[a-z0-9]/.test(chr))
     return s
 }
 
-var isPalindrome = function(s) {
-    const processed = preprocess(s)
+var isPalindrome = function(s) {   
+    const pStr = preprocess(s)
     
     let left = 0
-    let right = processed.length - 1
+    let right = pStr.length - 1
     
-    while (left < right) {
-        if (processed[left] !== processed[right]) return false
-        
+    while (left <= right) {
+        if (pStr[left] !== pStr[right]) return false
         left++
         right--
     }
     
     return true
-};
+}
