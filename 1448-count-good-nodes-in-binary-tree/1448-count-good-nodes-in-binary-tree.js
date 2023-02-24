@@ -13,8 +13,9 @@
 var countGoodNodes = function(root, max) {
     if (!root) return 0
     
-    const thisCount = root.val >= max ? 1 : 0
-    max = Math.max(root.val, max)
+    let thisCount = 1
+    if (root.val > max) max = root.val
+    else if (root.val < max) thisCount = 0
     
     const leftCount = countGoodNodes(root.left, max)
     const rightCount = countGoodNodes(root.right, max)
