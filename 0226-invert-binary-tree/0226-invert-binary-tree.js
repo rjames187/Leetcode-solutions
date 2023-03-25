@@ -13,5 +13,8 @@
 var invertTree = function(root) {
     if (!root) return null
     
-    return new TreeNode(root.val, invertTree(root.right), invertTree(root.left))
+    const right = invertTree(root.left)
+    const left = invertTree(root.right)
+    
+    return new TreeNode(root.val, left, right)
 }
